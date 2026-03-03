@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import WhatIsIt from '../components/WhatIsIt.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import PricingPlans from '../components/PricingPlans.astro';
+import WhyNutribox from '../components/WhyNutribox.astro';
+import CTASection from '../components/CTASection.astro';
+---
+
+<Layout title="Nutribox | Tu caja saludable mensual">
+  <main class="overflow-hidden">
+    <!-- 
+      Alex Hormozi Framework Applied:
+      1. Dream Outcome (Hero: Físico que deseas)
+      2. Perceived Likelihood (WhatIsIt: Productos premium, Social Proof en Hero)
+      3. Time Delay (HowItWorks: 3 pasos simples, Cambio desde el primer mes)
+      4. Effort & Sacrifice (WhyNutribox: Sin aburrirte, nosotros elegimos por ti)
+    -->
+    <Hero />
+    <WhatIsIt />
+    <HowItWorks />
+    <PricingPlans />
+    <WhyNutribox />
+    <CTASection />
+  </main>
+</Layout>

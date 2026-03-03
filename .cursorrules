@@ -1,0 +1,16 @@
+# Cursor Rules for Astro & Antigravity
+
+# Generic Rules
+- Always use `astro-icon` for icons. Do not use inline SVGs or other libraries.
+- Use native Astro `<Image />` component for all images.
+- Enforce semantic HTML (main, section, article, nav).
+- Separate Astro Frontmatter (---) from the HTML template clearly.
+
+# Antigravity Interaction
+- When proposing UI changes, provide the full Astro component code.
+- Always include an 'Audit' step for conversion optimization.
+- For Hero sections, always propose at least two variations (A/B) based on Alex Hormozi's "Grand Slam Offer".
+
+# Performance
+- Critical CSS should be inlined in the head.
+- Load non-critical fonts with `swap` display.

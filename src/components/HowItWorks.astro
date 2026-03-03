@@ -1,0 +1,67 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const steps = [
+  {
+    number: "01",
+    title: "Suscríbete",
+    description: "Elige tu versión de Nutribox según tu objetivo (Sorpresa, Plan o Detox).",
+    icon: "lucide:mouse-pointer-click"
+  },
+  {
+    number: "02",
+    title: "Recibe tu Caja",
+    description: "Recíbela cada mes en la puerta de tu casa u oficina, lista para disfrutar.",
+    icon: "lucide:truck"
+  },
+  {
+    number: "03",
+    title: "Transforma tu Vida",
+    description: "Disfruta, cuida tu cuerpo y crea hábitos saludables sin esfuerzo.",
+    icon: "lucide:heart-pulse"
+  }
+];
+---
+
+<section class="py-24 bg-white relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-6">
+        ¿Cómo <span class="relative">
+          <span class="relative z-10">Funciona?</span>
+          <span class="absolute bottom-2 left-0 w-full h-3 bg-green-200/60 -z-10 -rotate-2"></span>
+        </span>
+      </h2>
+      <p class="text-lg text-slate-600">
+        Tres simples pasos separan tu vida actual de la rutina saludable que siempre quisiste tener.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-12 relative">
+      <!-- Connecting line for desktop -->
+      <div class="hidden md:block absolute top-[4.5rem] left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-green-100 via-green-300 to-green-100 -z-10"></div>
+
+      {steps.map((step, index) => (
+        <div class="relative flex flex-col items-center text-center group">
+          <div class="w-36 h-36 mb-8 relative">
+            <div class="absolute inset-0 bg-green-50 rounded-full group-hover:bg-green-100 transition-colors duration-300"></div>
+            <div class="absolute inset-2 bg-white rounded-full shadow-sm flex items-center justify-center border-2 border-green-50 z-10">
+              <Icon name={step.icon} class="w-12 h-12 text-green-500 group-hover:scale-110 transition-transform duration-300" />
+            </div>
+            <div class="absolute -top-4 -right-2 bg-slate-800 text-white text-sm font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-lg z-20">
+              {step.number}
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold text-slate-800 mb-3">{step.title}</h3>
+          <p class="text-slate-600 leading-relaxed max-w-xs">{step.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-20 text-center">
+      <button class="payment-btn inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-green-700 bg-green-50 rounded-full hover:bg-green-100 transition-colors">
+        COMENZAR AHORA
+      </button>
+    </div>
+  </div>
+</section>

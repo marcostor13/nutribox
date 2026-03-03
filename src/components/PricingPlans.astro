@@ -1,0 +1,122 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const plans = [
+  {
+    name: "Nutribox Sorpresa",
+    badge: "🎁 REGALO",
+    price: "100",
+    description: "La opción perfecta para sorprender o sorprenderte mes a mes.",
+    bullets: [
+      "Productos saludables premium",
+      "Ideal para regalar bienestar",
+      "Experiencia divertida y diferente"
+    ],
+    quote: "“Regala salud, energía y amor propio”",
+    color: "slate",
+    popular: false
+  },
+  {
+    name: "Nutribox + Plan",
+    badge: "🥗 RECOMENDADO",
+    price: "100",
+    description: "Tu transformación empieza aquí. Cuidamos cada aspecto de tu nutrición.",
+    bullets: [
+      "Plan nutricional personalizado",
+      "Ingredientes exactos de tu plan",
+      "Seguimiento mensual"
+    ],
+    quote: "“No solo comes mejor, te conviertes en tu mejor versión”",
+    color: "green",
+    popular: true
+  },
+  {
+    name: "Nutribox Detox",
+    badge: "🔥 BAJA DE PESO",
+    price: "100",
+    description: "Diseñada específicamente para desinflamar y quemar grasa rápido.",
+    bullets: [
+      "Productos detox y funcionales",
+      "Pérdida de peso en 2 semanas",
+      "Mejora digestiva y energía"
+    ],
+    quote: "“Desintoxica tu cuerpo y reinicia tu sistema”",
+    color: "red",
+    popular: false
+  }
+];
+---
+
+<section id="planes" class="py-24 bg-slate-50 relative">
+  <!-- Interactive background blobs -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-40 right-[-10%] w-[500px] h-[500px] rounded-full bg-green-200/40 blur-[100px]"></div>
+    <div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-sky-200/40 blur-[120px]"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-slate-800 mb-6">
+        Elige tu <span class="text-green-500">Nutribox</span>
+      </h2>
+      <p class="text-lg text-slate-600 mb-8">
+        Todas nuestras opciones incluyen productos de la más alta calidad y envío a la puerta de tu casa.
+      </p>
+      
+      <!-- Value Proposition Badges -->
+      <div class="flex flex-wrap justify-center gap-4 text-sm font-semibold text-slate-700">
+        <span class="flex items-center gap-1"><Icon name="lucide:check-circle-2" class="w-5 h-5 text-green-500"/> Sin permanencia</span>
+        <span class="flex items-center gap-1"><Icon name="lucide:check-circle-2" class="w-5 h-5 text-green-500"/> Cancela cuando quieras</span>
+        <span class="flex items-center gap-1"><Icon name="lucide:check-circle-2" class="w-5 h-5 text-green-500"/> Valor superior cada mes</span>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+      {plans.map((plan) => (
+        <div class={`relative flex flex-col bg-white rounded-3xl overflow-hidden border ${plan.popular ? 'border-green-400 shadow-2xl shadow-green-100 scale-105 z-10' : 'border-slate-200 shadow-lg'}`}>
+          {plan.popular && (
+            <div class="bg-green-500 text-white text-xs font-bold uppercase tracking-wider text-center py-2 absolute top-0 w-full z-20">
+              {plan.badge}
+            </div>
+          )}
+          {!plan.popular && (
+            <div class={`text-[10px] font-bold uppercase tracking-wider text-center py-1.5 absolute top-0 w-full z-20 ${plan.color === 'slate' ? 'bg-slate-100 text-slate-600' : 'bg-red-50 text-red-600'}`}>
+              {plan.badge}
+            </div>
+          )}
+          
+          <div class={`p-8 ${plan.popular ? 'pt-12' : 'pt-10'} flex-grow flex flex-col`}>
+            <h3 class="text-2xl font-bold text-slate-800 mb-2">{plan.name}</h3>
+            <p class="text-slate-500 text-sm mb-6 h-10">{plan.description}</p>
+            
+            <div class="mb-6 flex items-baseline">
+              <span class="text-4xl font-extrabold text-slate-900">S/ {plan.price}</span>
+              <span class="text-slate-500 ml-1 font-medium">/mes</span>
+            </div>
+            
+            <ul class="space-y-4 mb-8 flex-grow">
+              {plan.bullets.map(bullet => (
+                <li class="flex items-start">
+                  <Icon name="lucide:check" class={`w-5 h-5 mr-3 flex-shrink-0 ${plan.popular ? 'text-green-500' : 'text-slate-400'}`} />
+                  <span class="text-slate-700 font-medium">{bullet}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="bg-slate-50 p-4 rounded-xl mb-8 italic text-sm text-slate-600 border border-slate-100 text-center">
+              {plan.quote}
+            </div>
+            
+            <button class={`payment-btn w-full py-4 rounded-xl font-bold transition-all ${
+              plan.popular 
+                ? 'bg-green-500 hover:bg-green-600 text-white shadow-lg shadow-green-200 hover:-translate-y-1' 
+                : 'bg-slate-100 hover:bg-slate-200 text-slate-800'
+            }`}>
+              SELECCIONAR PLAN
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
