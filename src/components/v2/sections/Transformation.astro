@@ -1,0 +1,52 @@
+---
+import NumberBlock from '../NumberBlock.astro';
+import DuotonePhoto from '../DuotonePhoto.astro';
+
+const goals = [
+  'Bajar de peso',
+  'Tonificar tu cuerpo',
+  'Aumentar masa muscular',
+  'Recuperar tu energía',
+  'Aprender a comer mejor',
+  'Verte y sentirte espectacular',
+];
+---
+
+<section id="transformacion" class="bg-paper py-[clamp(5rem,12vh,9rem)]">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+    <NumberBlock num="01" labelEn="TRANSFORMATION" subtitle="Tu transformación empieza aquí" />
+
+    <div class="mt-16 grid grid-cols-1 gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <p class="max-w-lg font-display text-xl font-bold" data-reveal>
+          No importa cuál sea tu meta. Tenemos un sistema diseñado para ayudarte.
+        </p>
+
+        <ul class="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {goals.map((goal, i) => (
+            <li
+              class:list={[
+                'group flex items-center gap-3 border-[3px] border-void bg-paper px-4 py-3.5 transition-colors hover:bg-void',
+                i % 2 === 0 ? 'rotate-[-0.6deg]' : 'rotate-[0.6deg]',
+              ]}
+              data-reveal
+              data-reveal-index={i + 1}
+            >
+              <span class="font-mono text-xs font-bold text-blood group-hover:text-acid">{String(i + 1).padStart(2, '0')}</span>
+              <span class="font-display text-sm font-black uppercase tracking-tight group-hover:text-paper">{goal}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lg:col-span-5" data-reveal>
+        <DuotonePhoto
+          alt="Entrenadora de BUNKERGYM evaluando el progreso físico de una clienta"
+          src="/ilovepdf_images-extracted/img16.jpg"
+          ratio="4/5"
+          tone="acid"
+        />
+      </div>
+    </div>
+  </div>
+</section>

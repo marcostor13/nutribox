@@ -1,0 +1,58 @@
+---
+import NumberBlock from '../NumberBlock.astro';
+import DuotonePhoto from '../DuotonePhoto.astro';
+import DuotonePlaceholder from '../DuotonePlaceholder.astro';
+
+const stats = [
+  { target: 850, label: 'Miembros activos' },
+  { target: 40, label: 'Clases por semana' },
+  { target: 320, label: 'Transformaciones' },
+];
+
+const mosaic = [
+  { src: '/real/community-outdoor.jpg', asset: 'community-01.jpg', tone: 'acid' },
+  { src: '/real/community-indoor.jpg', asset: 'community-02.jpg', tone: 'blood' },
+  { asset: 'community-03.jpg', tone: 'acid' },
+  { asset: 'community-04.jpg', tone: 'blood' },
+  { asset: 'community-05.jpg', tone: 'acid' },
+];
+---
+
+<section id="comunidad" data-spotlight class="relative overflow-hidden bg-void py-[clamp(5rem,12vh,9rem)] text-paper">
+  <div
+    data-spotlight-glow
+    class="pointer-events-none absolute -z-0 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0"
+    style="background: radial-gradient(circle, rgba(215,255,63,0.16) 0%, transparent 70%);"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-[1320px] px-5 sm:px-8">
+    <NumberBlock num="08" labelEn="COMMUNITY" subtitle="Comunidad Bunker Xtreme" theme="dark" tone="blood" />
+    <p class="mt-6 max-w-xl font-display text-lead font-bold text-paper/80" data-reveal>
+      Más que un programa. Una tribu que se apoya, crece y evoluciona junta.
+    </p>
+
+    <div class="mt-16 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
+      {mosaic.map((item, i) => (
+        <div class:list={['col-span-1', i === 0 && 'col-span-2 row-span-2 lg:col-span-2']} data-reveal data-reveal-index={i + 1}>
+          {item.src ? (
+            <DuotonePhoto src={item.src} alt="Comunidad BUNKERGYM entrenando junta" ratio={i === 0 ? '1/1' : '3/4'} tone={item.tone} />
+          ) : (
+            <DuotonePlaceholder alt="Foto de comunidad BUNKERGYM entrenando junta" asset={item.asset} ratio={i === 0 ? '1/1' : '3/4'} tone={item.tone} />
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-16 grid grid-cols-1 gap-10 border-t-[3px] border-paper/20 pt-12 sm:grid-cols-3">
+      {stats.map((stat, i) => (
+        <div class="text-center sm:text-left" data-reveal data-reveal-index={i + 1}>
+          <p class:list={['font-display text-h2 font-black leading-[0.8]', i % 2 === 0 ? 'text-acid' : 'text-blood']}>
+            <span data-count-to={stat.target}>0</span>+
+          </p>
+          <p class="mt-2 font-mono text-xs uppercase tracking-[0.2em] text-paper/60">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

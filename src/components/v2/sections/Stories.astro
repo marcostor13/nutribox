@@ -1,0 +1,207 @@
+---
+import { Icon } from 'astro-icon/components';
+import NumberBlock from '../NumberBlock.astro';
+import DuotonePlaceholder from '../DuotonePlaceholder.astro';
+
+// TODO: reemplazar por testimonios reales del cliente (fotos, nombres, cifras)
+const personas = [
+  {
+    asset: 'persona-01.jpg',
+    name: 'Andrea',
+    age: 29,
+    role: 'Alumna Bunker Xtreme',
+    quote: 'Recuperé la energía que sentía que había perdido para siempre.',
+    goal: 'Bajar de peso y recuperar energía diaria',
+    start: 'Sedentaria, sin rutina de ejercicio ni alimentación ordenada',
+    result: 'Cuerpo tonificado, hábitos sostenibles y más disciplina',
+    metric: '-8 kg · 12 semanas',
+  },
+  {
+    asset: 'persona-02.jpg',
+    name: 'Fiorella',
+    age: 34,
+    role: 'Alumna Bunker Xtreme',
+    quote: 'Por primera vez entiendo qué como y por qué me hace bien.',
+    goal: 'Tonificar el cuerpo tras el post-parto',
+    start: 'Sin tiempo, sin plan y con miedo a entrenar mal',
+    result: 'Rutina personalizada + plan nutricional que sí pudo mantener',
+    metric: '-6 kg · 10 semanas',
+  },
+  {
+    asset: 'persona-03.jpg',
+    name: 'Renzo',
+    age: 41,
+    role: 'Alumno 1 a 1',
+    quote: 'Mi entrenador ajusta todo semana a semana según cómo respondo.',
+    goal: 'Aumentar masa muscular sin lesionarse',
+    start: 'Lesión de rodilla previa y entrenamientos genéricos',
+    result: 'Fuerza y masa muscular en aumento sostenido, sin dolor',
+    metric: '+4 kg masa magra · 16 semanas',
+  },
+  {
+    asset: 'persona-04.jpg',
+    name: 'Camila',
+    age: 26,
+    role: 'Alumna Bunker Xtreme',
+    quote: 'La comunidad me sostuvo en los días en que quería rendirme.',
+    goal: 'Verse y sentirse espectacular para un evento importante',
+    start: 'Motivación intermitente, entrenaba sola',
+    result: 'Constancia real gracias al grupo y seguimiento cercano',
+    metric: '-5 kg · 8 semanas',
+  },
+];
+---
+
+<section id="historias" class="bg-paper py-[clamp(5rem,12vh,9rem)]">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+    <NumberBlock num="07" labelEn="STORIES" subtitle="Historias de transformación" />
+
+    <div class="mt-14 flex flex-wrap gap-3" role="tablist" aria-label="Selecciona una historia" id="stories-tabs">
+      {personas.map((persona, i) => (
+        <button
+          type="button"
+          role="tab"
+          aria-selected={i === 0 ? 'true' : 'false'}
+          data-tab-index={i}
+          class="story-tab relative flex items-center gap-2 overflow-hidden border-[3px] border-void px-3 py-2 font-mono text-xs font-bold uppercase tracking-[0.1em] transition-colors aria-selected:text-acid-ink"
+        >
+          <span class="story-tab-fill absolute inset-0 -z-10 origin-left scale-x-0 bg-acid"></span>
+          <span class="flex h-6 w-6 items-center justify-center border-2 border-void bg-void text-[0.6rem] text-paper">
+            {persona.name.charAt(0)}
+          </span>
+          {persona.name}
+        </button>
+      ))}
+    </div>
+
+    <div class="story-swiper swiper mt-8" data-reveal>
+      <div class="swiper-wrapper">
+        {personas.map((persona, i) => (
+          <div class="swiper-slide">
+            <article class="grid grid-cols-1 gap-10 border-[3px] border-void bg-paper p-6 sm:p-10 lg:grid-cols-12">
+              <div class="lg:col-span-4">
+                <DuotonePlaceholder
+                  alt={`Foto de ${persona.name}, ${persona.role.toLowerCase()}`}
+                  asset={persona.asset}
+                  ratio="3/4"
+                  tone={i % 2 === 0 ? 'acid' : 'blood'}
+                />
+              </div>
+              <div class="flex flex-col justify-center lg:col-span-8">
+                <p class="font-display text-lg font-black uppercase tracking-tight">
+                  {persona.name} · {persona.age} · {persona.role}
+                </p>
+                <p class="mt-4 font-display text-xl font-bold text-void/85">"{persona.quote}"</p>
+
+                <dl class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
+                  <div>
+                    <dt class="mb-1 inline-block bg-void px-2 py-0.5 font-mono text-[0.65rem] font-bold uppercase tracking-[0.14em] text-paper">
+                      Objetivo
+                    </dt>
+                    <dd class="mt-2 font-display text-sm font-bold">{persona.goal}</dd>
+                  </div>
+                  <div>
+                    <dt class="mb-1 inline-block bg-void px-2 py-0.5 font-mono text-[0.65rem] font-bold uppercase tracking-[0.14em] text-paper">
+                      Punto de partida
+                    </dt>
+                    <dd class="mt-2 font-display text-sm font-bold">{persona.start}</dd>
+                  </div>
+                  <div>
+                    <dt class="mb-1 inline-block bg-void px-2 py-0.5 font-mono text-[0.65rem] font-bold uppercase tracking-[0.14em] text-paper">
+                      Resultado
+                    </dt>
+                    <dd class="mt-2 font-display text-sm font-bold">{persona.result}</dd>
+                  </div>
+                </dl>
+
+                <p class="mt-6 inline-flex w-fit items-center gap-2 border-2 border-void bg-acid px-4 py-2 font-display text-sm font-black text-acid-ink">
+                  <Icon name="lucide:trending-up" class="h-4 w-4" />
+                  {persona.metric}
+                </p>
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-8 flex items-center justify-center gap-4">
+      <button
+        type="button"
+        id="stories-prev"
+        aria-label="Historia anterior"
+        class="v2-press flex h-11 w-11 items-center justify-center border-[3px] border-void bg-paper transition-colors hover:bg-void hover:text-paper"
+      >
+        <Icon name="lucide:arrow-left" class="h-4 w-4" />
+      </button>
+      <button
+        type="button"
+        id="stories-next"
+        aria-label="Historia siguiente"
+        class="v2-press flex h-11 w-11 items-center justify-center border-[3px] border-void bg-paper transition-colors hover:bg-void hover:text-paper"
+      >
+        <Icon name="lucide:arrow-right" class="h-4 w-4" />
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .swiper-slide {
+    height: auto;
+  }
+
+  .story-tab-fill {
+    transition: transform 5.5s linear;
+  }
+
+  .story-tab-fill.is-filling {
+    transform: scaleX(1);
+  }
+</style>
+
+<script>
+  import Swiper from 'swiper';
+  import { A11y, EffectFade, Autoplay } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/effect-fade';
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const swiper = new Swiper('.story-swiper', {
+    modules: [A11y, EffectFade, Autoplay],
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
+    slidesPerView: 1,
+    speed: 700,
+    a11y: { enabled: true },
+    autoplay: reduceMotion ? false : { delay: 5500, disableOnInteraction: false, pauseOnMouseEnter: true },
+  });
+
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.story-tab');
+  const prevBtn = document.getElementById('stories-prev');
+  const nextBtn = document.getElementById('stories-next');
+
+  function setActiveTab(index: number) {
+    tabs.forEach((tab, i) => {
+      tab.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      const fill = tab.querySelector<HTMLElement>('.story-tab-fill');
+      if (!fill) return;
+      fill.style.transition = 'none';
+      fill.classList.remove('is-filling');
+      void fill.offsetWidth;
+      fill.style.transition = '';
+      if (i === index) fill.classList.add('is-filling');
+    });
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => swiper.slideTo(Number(tab.dataset.tabIndex)));
+  });
+
+  prevBtn?.addEventListener('click', () => swiper.slidePrev());
+  nextBtn?.addEventListener('click', () => swiper.slideNext());
+
+  swiper.on('slideChange', () => setActiveTab(swiper.activeIndex));
+  setActiveTab(0);
+</script>

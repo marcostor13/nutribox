@@ -1,0 +1,29 @@
+---
+// TODO: reemplazar por asset real del cliente (ver §12 del brief)
+interface Props {
+  alt: string;
+  asset: string;
+  ratio?: string;
+  tone?: 'acid' | 'blood';
+  class?: string;
+}
+
+const { alt, asset, ratio = '4/5', tone = 'acid', class: className = '' } = Astro.props;
+const toneClass = tone === 'blood' ? 'bg-void text-blood' : 'bg-void text-acid';
+---
+
+<div
+  role="img"
+  aria-label={alt}
+  data-reveal-img
+  style={`aspect-ratio: ${ratio}; background-image: repeating-linear-gradient(135deg, currentColor 0, currentColor 2px, transparent 2px, transparent 16px);`}
+  class:list={[
+    'relative flex w-full items-end border-[3px] border-void opacity-90',
+    toneClass,
+    className,
+  ]}
+>
+  <span class="m-3 border-2 border-current bg-void px-2.5 py-1 font-mono text-[0.65rem] uppercase tracking-[0.1em] text-paper">
+    {asset}
+  </span>
+</div>

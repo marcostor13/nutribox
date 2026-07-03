@@ -1,0 +1,30 @@
+---
+interface Props {
+  num: string;
+  labelEn: string;
+  subtitle: string;
+  theme?: 'light' | 'dark';
+  tone?: 'acid' | 'blood';
+}
+
+const { num, labelEn, subtitle, theme = 'light', tone = 'acid' } = Astro.props;
+const isDark = theme === 'dark';
+const numColor = tone === 'blood' ? 'text-blood' : 'text-acid';
+---
+
+<header class="relative flex flex-col gap-3" data-reveal>
+  <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-6">
+    <span
+      class:list={[
+        'font-display leading-[0.75] font-black text-num-xl',
+        numColor,
+      ]}
+    >
+      {num}
+    </span>
+    <div class:list={['flex min-w-0 flex-col gap-2 border-l-[3px] border-current pl-4 sm:pl-6', isDark ? 'text-paper' : 'text-void']}>
+      <span class="font-mono text-xs font-bold uppercase tracking-[0.3em]">{labelEn}</span>
+      <p class="max-w-xs font-display text-xl leading-[1.05] font-black uppercase text-balance sm:text-2xl">{subtitle}</p>
+    </div>
+  </div>
+</header>

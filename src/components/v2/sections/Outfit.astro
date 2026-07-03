@@ -1,0 +1,47 @@
+---
+import NumberBlock from '../NumberBlock.astro';
+import CtaButtonV2 from '../CtaButtonV2.astro';
+import DuotonePhoto from '../DuotonePhoto.astro';
+
+const gallery = [
+  { src: '/ilovepdf_images-extracted/img54.jpg', label: 'Leggings & conjunto negro', ratio: '3/4', span: 'lg:col-span-4', tone: 'acid' },
+  { src: '/ilovepdf_images-extracted/img48.jpg', label: 'Top deportivo y leggings flare', ratio: '4/5', span: 'lg:col-span-4', tone: 'blood' },
+  { src: '/ilovepdf_images-extracted/img51.jpg', label: 'Conjunto premium', ratio: '4/5', span: 'lg:col-span-4', tone: 'acid' },
+  { src: '/ilovepdf_images-extracted/img57.jpg', label: 'Casaca deportiva hombre', ratio: '4/5', span: 'lg:col-span-6', tone: 'blood' },
+  { src: '/ilovepdf_images-extracted/img58.jpg', label: 'Polo oversize hombre', ratio: '4/5', span: 'lg:col-span-6', tone: 'acid' },
+];
+
+const items = ['Leggings', 'Tops deportivos', 'Casacas', 'Polos oversize', 'Conjuntos premium', 'Accesorios fitness'];
+---
+
+<section id="outfit" class="bg-paper py-[clamp(5rem,12vh,9rem)]">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+    <NumberBlock num="05" labelEn="OUTFIT" subtitle="Outfit Fitness" tone="blood" />
+
+    <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
+      <p class="max-w-md font-display text-lead font-bold lg:col-span-6" data-reveal>
+        Moda deportiva que combina estilo, comodidad y rendimiento. Colecciones para sentirte segura dentro y fuera
+        del gimnasio.
+      </p>
+      <ul class="flex flex-wrap gap-x-3 gap-y-2 lg:col-span-6 lg:justify-end" data-reveal>
+        {items.map((item) => (
+          <li class="border-2 border-void bg-void px-2.5 py-1 font-mono text-xs font-bold uppercase tracking-wider text-paper">
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-12">
+      {gallery.map((g, i) => (
+        <div class:list={['col-span-1', g.span]} data-reveal data-reveal-index={i + 1}>
+          <DuotonePhoto src={g.src} alt={`${g.label} — colección Outfit Fitness BUNKERGYM`} ratio={g.ratio} tone={g.tone} />
+        </div>
+      ))}
+    </div>
+
+    <CtaButtonV2 variant="blood" waMessage="Hola, quiero comprar outfit deportivo" class="mt-12">
+      Comprar outfit
+    </CtaButtonV2>
+  </div>
+</section>

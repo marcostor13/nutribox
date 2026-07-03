@@ -1,0 +1,129 @@
+---
+import { Icon } from 'astro-icon/components';
+import CtaButtonV2 from './CtaButtonV2.astro';
+
+const links = [
+  { href: '#hero', label: 'Inicio', num: '00' },
+  { href: '#transformacion', label: 'Transformación', num: '01' },
+  { href: '#servicios', label: 'Servicios', num: '02' },
+  { href: '#nutribox', label: 'NutriBox', num: '03' },
+  { href: '#store', label: 'Store', num: '04' },
+  { href: '#outfit', label: 'Outfit', num: '05' },
+  { href: '#metodo', label: 'Método', num: '06' },
+  { href: '#historias', label: 'Historias', num: '07' },
+  { href: '#comunidad', label: 'Comunidad', num: '08' },
+];
+---
+
+<header
+  data-site-header
+  class="fixed inset-x-0 top-0 z-40 border-b-[3px] border-transparent transition-colors duration-300 [&.is-scrolled]:border-void [&.is-scrolled]:bg-paper"
+>
+  <div class="mx-auto flex max-w-[1320px] items-center justify-between px-5 py-4 sm:px-8">
+    <a href="#hero" class="font-display text-xl font-black uppercase tracking-tighter text-paper [.is-scrolled_&]:text-void">
+      Bunker<span class="text-acid">Gym</span><span class="font-mono text-xs align-super">*</span>
+    </a>
+
+    <button
+      id="bunker-nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="bunker-drawer"
+      class="v2-press group flex h-11 w-11 items-center justify-center border-[3px] border-void bg-acid text-acid-ink"
+      aria-label="Abrir menú"
+    >
+      <Icon name="lucide:menu" class="h-5 w-5 group-aria-expanded:hidden" />
+      <Icon name="lucide:x" class="hidden h-5 w-5 group-aria-expanded:block" />
+    </button>
+  </div>
+</header>
+
+<div id="bunker-drawer-backdrop" class="fixed inset-0 z-40 hidden bg-void/70 backdrop-blur-sm" data-drawer-backdrop></div>
+
+<aside
+  id="bunker-drawer"
+  class="fixed inset-y-0 right-0 z-50 flex w-full max-w-md translate-x-full flex-col justify-between border-l-[3px] border-acid bg-void px-8 py-10 text-paper transition-transform duration-500 ease-[cubic-bezier(.16,1,.3,1)]"
+  aria-hidden="true"
+>
+  <div>
+    <div class="mb-12 flex items-center justify-between">
+      <span class="font-display text-xl font-black uppercase tracking-tighter">
+        Bunker<span class="text-acid">Gym</span>
+      </span>
+      <button
+        id="bunker-drawer-close"
+        type="button"
+        class="v2-press v2-press--light flex h-10 w-10 items-center justify-center border-[3px] border-paper bg-void text-paper"
+        aria-label="Cerrar menú"
+      >
+        <Icon name="lucide:x" class="h-5 w-5" />
+      </button>
+    </div>
+
+    <nav aria-label="Navegación principal">
+      <ul class="flex flex-col gap-0.5">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              data-drawer-link
+              class="group flex items-center gap-4 border-b border-paper/15 py-3 font-display text-2xl font-black uppercase tracking-tight transition-colors hover:text-acid focus-visible:text-acid"
+            >
+              <span class="font-mono text-sm text-acid/70 group-hover:text-acid">{link.num}</span>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+
+  <div class="flex flex-col gap-6">
+    <div class="flex gap-4 text-paper/70">
+      <a href="#" class="v2-press v2-press--light flex h-9 w-9 items-center justify-center border-2 border-paper bg-void hover:text-acid" aria-label="Instagram">
+        <Icon name="lucide:instagram" class="h-4 w-4" />
+      </a>
+      <a href="#" class="v2-press v2-press--light flex h-9 w-9 items-center justify-center border-2 border-paper bg-void hover:text-acid" aria-label="WhatsApp">
+        <Icon name="lucide:message-circle" class="h-4 w-4" />
+      </a>
+    </div>
+    <CtaButtonV2 variant="acid" waMessage="Hola, quiero agendar mi evaluación gratuita en BUNKERGYM.">
+      Agenda tu evaluación
+    </CtaButtonV2>
+  </div>
+</aside>
+
+<script>
+  const toggle = document.getElementById('bunker-nav-toggle');
+  const drawer = document.getElementById('bunker-drawer');
+  const backdrop = document.getElementById('bunker-drawer-backdrop');
+  const closeBtn = document.getElementById('bunker-drawer-close');
+  const links = document.querySelectorAll('[data-drawer-link]');
+
+  function openDrawer() {
+    drawer?.classList.remove('translate-x-full');
+    drawer?.setAttribute('aria-hidden', 'false');
+    backdrop?.classList.remove('hidden');
+    toggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    drawer?.classList.add('translate-x-full');
+    drawer?.setAttribute('aria-hidden', 'true');
+    backdrop?.classList.add('hidden');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    isOpen ? closeDrawer() : openDrawer();
+  });
+  closeBtn?.addEventListener('click', closeDrawer);
+  backdrop?.addEventListener('click', closeDrawer);
+  links.forEach((link) => link.addEventListener('click', closeDrawer));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDrawer();
+  });
+</script>

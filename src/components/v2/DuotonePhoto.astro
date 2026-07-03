@@ -1,0 +1,27 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  ratio?: string;
+  tone?: 'acid' | 'blood';
+  class?: string;
+  eager?: boolean;
+}
+
+const { src, alt, ratio = '4/5', tone = 'acid', class: className = '', eager = false } = Astro.props;
+---
+
+<div
+  data-reveal-img
+  style={`aspect-ratio: ${ratio};`}
+  class:list={['v2-duotone', `v2-duotone--${tone}`, 'relative w-full border-[3px] border-void', className]}
+>
+  <img
+    src={src}
+    alt={alt}
+    loading={eager ? 'eager' : 'lazy'}
+    fetchpriority={eager ? 'high' : undefined}
+    decoding="async"
+    class="h-full w-full object-cover"
+  />
+</div>

@@ -1,0 +1,54 @@
+---
+import { Icon } from 'astro-icon/components';
+import { waLink } from '../../../utils/whatsapp';
+import Marquee from '../Marquee.astro';
+---
+
+<Marquee tone="blood" items={['Tu nueva vida empieza hoy', 'Cupos limitados', 'Sin excusas', 'Bunker Xtreme']} />
+
+<section class="relative overflow-hidden bg-acid py-[clamp(5rem,12vh,8rem)] text-acid-ink">
+  <div class="relative mx-auto max-w-[1320px] px-5 text-center sm:px-8" data-reveal>
+    <span class="mx-auto mb-8 inline-block -rotate-3 border-[3px] border-void bg-void px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.25em] text-acid">
+      Cupos limitados este mes
+    </span>
+    <h2 class="font-display text-mega font-black uppercase leading-[0.85] tracking-tight">
+      Tu nueva vida<br />empieza hoy
+    </h2>
+    <p class="mx-auto mt-6 max-w-md font-display text-lg font-bold">
+      No esperes el momento perfecto. El momento perfecto es AHORA.
+    </p>
+    <a
+      href={waLink('Hola, quiero transformar mi vida con BUNKERGYM.')}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="v2-press mt-9 inline-flex items-center gap-2 border-[3px] border-void bg-void px-8 py-4 font-display text-sm font-black uppercase tracking-tight text-acid"
+    >
+      🚀 Quiero transformar mi vida
+    </a>
+  </div>
+</section>
+
+<footer class="bg-void py-12 text-paper/70">
+  <div class="mx-auto flex max-w-[1320px] flex-col items-center gap-6 px-5 text-center sm:flex-row sm:justify-between sm:text-left">
+    <span class="font-display text-lg font-black uppercase tracking-tighter text-paper">
+      Bunker<span class="text-acid">Gym</span>
+    </span>
+
+    <div class="flex gap-4">
+      <a href="#" class="v2-press v2-press--light flex h-9 w-9 items-center justify-center border-2 border-paper bg-void hover:text-acid" aria-label="Instagram">
+        <Icon name="lucide:instagram" class="h-4 w-4" />
+      </a>
+      <a
+        href={waLink('Hola, tengo una consulta para BUNKERGYM.')}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="v2-press v2-press--light flex h-9 w-9 items-center justify-center border-2 border-paper bg-void hover:text-acid"
+        aria-label="WhatsApp"
+      >
+        <Icon name="lucide:message-circle" class="h-4 w-4" />
+      </a>
+    </div>
+
+    <p class="font-mono text-xs text-paper/50">&copy; {new Date().getFullYear()} BUNKERGYM by Giovifitness — Opción 2</p>
+  </div>
+</footer>

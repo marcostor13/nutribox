@@ -1,0 +1,52 @@
+---
+import { Icon } from 'astro-icon/components';
+import NumberBlock from '../NumberBlock.astro';
+
+const pillars = [
+  { icon: 'lucide:activity', label: 'Movimiento' },
+  { icon: 'lucide:apple', label: 'Nutrición' },
+  { icon: 'lucide:zap', label: 'Energía' },
+  { icon: 'lucide:repeat', label: 'Hábitos' },
+  { icon: 'lucide:heart', label: 'Confianza' },
+  { icon: 'lucide:sparkles', label: 'Bienestar' },
+];
+---
+
+<section id="metodo" data-spotlight class="relative overflow-hidden bg-void py-[clamp(5rem,12vh,9rem)] text-paper">
+  <div
+    data-spotlight-glow
+    class="pointer-events-none absolute -z-0 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0"
+    style="background: radial-gradient(circle, rgba(215,255,63,0.16) 0%, transparent 70%);"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-[1320px] px-5 sm:px-8">
+    <NumberBlock num="06" labelEn="METHOD" subtitle="No trabajamos solo el cuerpo" theme="dark" />
+
+    <div class="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+      {pillars.map((pillar, i) => (
+        <div
+          class:list={[
+            'group flex flex-col items-center gap-3 border-[3px] border-paper/25 py-8 text-center transition-colors hover:border-acid hover:bg-acid',
+            i % 2 === 0 ? 'rotate-[-0.8deg]' : 'rotate-[0.8deg]',
+          ]}
+          data-reveal
+          data-reveal-index={i + 1}
+        >
+          <Icon name={pillar.icon} class="h-7 w-7 text-acid group-hover:text-acid-ink" />
+          <span class="font-display text-xs font-black uppercase tracking-[0.1em] group-hover:text-acid-ink">
+            {pillar.label}
+          </span>
+        </div>
+      ))}
+    </div>
+
+    <p
+      class="mx-auto mt-24 max-w-3xl text-center font-display text-[clamp(1.75rem,4.5vw,3.25rem)] font-black uppercase leading-[0.95]"
+      data-reveal
+    >
+      Cuando una mujer se transforma <span class="text-acid">por dentro</span>, todo cambia
+      <span class="text-blood">por fuera.</span>
+    </p>
+  </div>
+</section>

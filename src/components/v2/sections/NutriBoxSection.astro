@@ -1,0 +1,51 @@
+---
+import NumberBlock from '../NumberBlock.astro';
+import CtaButtonV2 from '../CtaButtonV2.astro';
+import DuotonePhoto from '../DuotonePhoto.astro';
+
+const items = ['Snacks proteicos', 'Galletas saludables', 'Frutos secos', 'Barras energéticas', 'Productos funcionales'];
+---
+
+<section id="nutribox" data-spotlight class="relative overflow-hidden bg-void py-[clamp(5rem,12vh,9rem)] text-paper">
+  <div
+    data-spotlight-glow
+    class="pointer-events-none absolute -z-0 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0"
+    style="background: radial-gradient(circle, rgba(255,46,85,0.18) 0%, transparent 70%);"
+  >
+  </div>
+
+  <div class="relative mx-auto max-w-[1320px] px-5 sm:px-8">
+    <NumberBlock num="03" labelEn="NUTRIBOX" subtitle="Disfruta comer sin culpa" theme="dark" tone="blood" />
+
+    <div class="mt-16 grid grid-cols-1 items-center gap-14 lg:grid-cols-12">
+      <div class="lg:col-span-6" data-reveal>
+        <DuotonePhoto
+          src="/real/nutribox-delivery.jpg"
+          alt="Clienta recibiendo su caja NutriBox en la puerta de su casa"
+          ratio="4/5"
+          tone="blood"
+        />
+      </div>
+
+      <div class="lg:col-span-6" data-reveal>
+        <h3 class="font-display text-h2 font-black uppercase leading-[0.95]">NutriBox</h3>
+        <p class="mt-4 max-w-md font-display text-lead font-bold text-paper/85">
+          Una selección de snacks saludables elegidos para mantener tus objetivos sin sacrificar el sabor.
+        </p>
+
+        <ul class="mt-8 flex flex-col gap-3">
+          {items.map((item, i) => (
+            <li class="flex items-center gap-3 border-b border-paper/20 pb-3 font-display font-bold">
+              <span class="font-mono text-xs text-blood">{String(i + 1).padStart(2, '0')}</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <CtaButtonV2 variant="blood" waMessage="Hola, quiero mi NutriBox" class="mt-9">
+          Quiero mi NutriBox
+        </CtaButtonV2>
+      </div>
+    </div>
+  </div>
+</section>

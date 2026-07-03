@@ -1,0 +1,30 @@
+---
+interface Props {
+  items: string[];
+  tone?: 'acid' | 'blood' | 'paper';
+  class?: string;
+}
+
+const { items, tone = 'acid', class: className = '' } = Astro.props;
+
+const toneClasses: Record<string, string> = {
+  acid: 'bg-acid text-acid-ink',
+  blood: 'bg-blood text-paper',
+  paper: 'bg-paper text-void',
+};
+---
+
+<div class:list={['overflow-hidden border-y-2 border-void py-3', toneClasses[tone], className]}>
+  <div class="v2-marquee-track">
+    {[0, 1].map(() => (
+      <div class="flex shrink-0 items-center">
+        {items.map((item) => (
+          <span class="mx-4 flex items-center gap-4 font-display text-lg font-black uppercase tracking-tight whitespace-nowrap">
+            {item}
+            <span aria-hidden="true">✦</span>
+          </span>
+        ))}
+      </div>
+    ))}
+  </div>
+</div>

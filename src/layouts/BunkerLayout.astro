@@ -90,7 +90,7 @@ const { title } = Astro.props;
         });
 
         // Hero parallax en capas + tilt sutil con el cursor
-        const hero = document.querySelector('[data-hero]');
+        const hero = document.querySelector<HTMLElement>('[data-hero]');
         if (hero) {
           const figure = hero.querySelector<HTMLElement>('[data-hero-figure]');
           const shadow = hero.querySelector<HTMLElement>('[data-hero-shadow]');
@@ -103,14 +103,14 @@ const { title } = Astro.props;
             });
 
             if (window.matchMedia('(pointer: fine)').matches) {
-              hero.addEventListener('mousemove', (e) => {
+              hero.addEventListener('mousemove', (e: MouseEvent) => {
                 const rect = hero.getBoundingClientRect();
                 const px = (e.clientX - rect.left) / rect.width - 0.5;
                 const py = (e.clientY - rect.top) / rect.height - 0.5;
-                gsap.to(figure, { x: px * 16, rotateZ: px * 1.2, duration: 0.6, ease: 'power2.out' });
+                gsap.to(figure, { x: px * 16, y: py * 10, rotateZ: px * 1.2, duration: 0.6, ease: 'power2.out' });
               });
               hero.addEventListener('mouseleave', () => {
-                gsap.to(figure, { x: 0, rotateZ: 0, duration: 0.8, ease: 'power3.out' });
+                gsap.to(figure, { x: 0, y: 0, rotateZ: 0, duration: 0.8, ease: 'power3.out' });
               });
             }
           }

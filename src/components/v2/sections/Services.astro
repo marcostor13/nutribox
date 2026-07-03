@@ -1,0 +1,81 @@
+---
+import NumberBlock from '../NumberBlock.astro';
+import ServiceCardV2 from '../ServiceCardV2.astro';
+---
+
+<section id="servicios" class="bg-paper py-[clamp(5rem,12vh,9rem)]">
+  <div class="mx-auto max-w-[1320px] px-5 sm:px-8">
+    <NumberBlock num="02" labelEn="SERVICES" subtitle="Nuestros servicios" tone="blood" />
+
+    <div class="mt-16">
+      <ServiceCardV2
+        index={0}
+        tone="acid"
+        title="Entrenamiento grupal"
+        lead="Entrena junto a una comunidad de mujeres con tus mismos objetivos."
+        groups={[
+          {
+            items: [
+              'Clases dinámicas',
+              'Quema de grasa',
+              'Tonificación',
+              'Motivación constante',
+              'Horarios flexibles',
+              'Comunidad privada',
+            ],
+          },
+        ]}
+        ctaLabel="Quiero entrenar en grupo"
+        waMessage="Hola, quiero info del entrenamiento grupal"
+        asset="class-group.jpg"
+        photoSrc="/ilovepdf_images-extracted/img12.jpg"
+        alt="Clase grupal de entrenamiento femenino en BUNKERGYM"
+      />
+
+      <ServiceCardV2
+        index={1}
+        reverse
+        tone="blood"
+        title="Entrenamiento personalizado 1 a 1"
+        lead="Tu entrenador personal en todo momento. Para hombres y mujeres."
+        groups={[
+          { heading: 'Programa según', items: ['Edad', 'Objetivos', 'Nivel físico', 'Lesiones', 'Disponibilidad'] },
+          {
+            heading: 'Incluye',
+            items: [
+              'Seguimiento permanente',
+              'Evaluaciones periódicas',
+              'Plan nutricional personalizado',
+              'Comunicación directa',
+              'Ajustes semanales',
+            ],
+          },
+        ]}
+        ctaLabel="Quiero mi plan personalizado"
+        waMessage="Hola, quiero info del entrenamiento personalizado 1 a 1"
+        asset="personal-training.jpg"
+        photoSrc="/ilovepdf_images-extracted/img43.jpg"
+        alt="Alumna entrenando con seguimiento personalizado 1 a 1 en BUNKERGYM"
+      />
+
+      <ServiceCardV2
+        index={2}
+        tone="acid"
+        title="Planes nutricionales"
+        lead="Sin nutrición, los resultados no llegan. Olvídate de las dietas extremas."
+        groups={[
+          { heading: 'Adaptado a', items: ['Tus gustos', 'Tu presupuesto', 'Tu rutina', 'Tus objetivos'] },
+          {
+            heading: 'Obtienes',
+            items: ['Menú personalizado', 'Lista de compras', 'Opciones de reemplazo', 'Seguimiento'],
+          },
+        ]}
+        ctaLabel="Solicitar mi plan"
+        waMessage="Hola, quiero solicitar mi plan nutricional"
+        asset="nutrition-plan.jpg"
+        photoSrc="/ilovepdf_images-extracted/img32.jpg"
+        alt="Snack saludable casero, parte de un plan nutricional personalizado BUNKERGYM"
+      />
+    </div>
+  </div>
+</section>

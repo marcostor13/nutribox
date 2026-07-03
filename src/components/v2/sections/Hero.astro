@@ -1,0 +1,82 @@
+---
+import CtaButtonV2 from '../CtaButtonV2.astro';
+import Marquee from '../Marquee.astro';
+---
+
+<section
+  id="hero"
+  data-hero
+  data-spotlight
+  class="relative flex min-h-[100svh] flex-col overflow-hidden bg-void pt-24 text-paper"
+>
+  <div
+    data-spotlight-glow
+    class="pointer-events-none absolute -z-0 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-0"
+    style="background: radial-gradient(circle, rgba(215,255,63,0.16) 0%, transparent 70%);"
+  >
+  </div>
+
+  <div class="relative z-10 mx-auto flex w-full max-w-[1320px] flex-1 flex-col justify-center gap-10 px-5 py-16 sm:px-8 lg:flex-row lg:items-center lg:gap-6">
+    <div class="lg:w-7/12">
+      <p
+        class="mb-6 inline-flex border-2 border-acid px-3 py-1 font-mono text-xs font-bold uppercase tracking-[0.25em] text-acid"
+        data-reveal
+      >
+        Bunker Xtreme · Giovifitness
+      </p>
+
+      <h1 data-hero-headline class="select-none">
+        <span class="block rotate-[-1.5deg] font-display text-hero-kinetic leading-[0.86] font-black uppercase" data-reveal data-reveal-index="1">
+          Bienvenida
+        </span>
+        <span class="block rotate-[1deg] font-display text-hero-kinetic leading-[0.86] font-black uppercase" data-reveal data-reveal-index="2">
+          a tu nueva
+        </span>
+        <span class="block rotate-[-1deg] font-display text-hero-kinetic leading-[0.86] font-black uppercase text-acid" data-reveal data-reveal-index="3">
+          versión.
+        </span>
+      </h1>
+
+      <p class="mt-8 max-w-lg font-display text-lead font-bold text-paper/90" data-reveal data-reveal-index="4">
+        Transforma tu cuerpo, tu energía y tu confianza con entrenamiento, nutrición y bienestar en un solo lugar.
+      </p>
+      <p class="mt-4 max-w-md font-mono text-sm text-paper/50" data-reveal data-reveal-index="5">
+        Deja de empezar de cero cada lunes. Aquí encontrarás las herramientas para sentirte fuerte, saludable y con
+        más confianza en ti.
+      </p>
+
+      <div class="mt-10 flex flex-col gap-4 sm:flex-row" data-reveal data-reveal-index="6">
+        <CtaButtonV2 variant="acid" waMessage="Hola, quiero empezar hoy mismo en BUNKERGYM.">
+          Empieza hoy →
+        </CtaButtonV2>
+        <CtaButtonV2 variant="outline" waMessage="Hola, quiero agendar mi evaluación gratuita en BUNKERGYM.">
+          Evaluación gratuita
+        </CtaButtonV2>
+      </div>
+    </div>
+
+    <div class="relative lg:w-5/12" data-reveal data-reveal-index="3">
+      <div class="absolute -inset-4 -z-10 rotate-3 bg-acid sm:-inset-6"></div>
+      <div class="relative -rotate-2 border-[3px] border-paper">
+        <img
+          src="/real/hero-trainer.jpg"
+          alt="Alumna de BUNKERGYM celebrando un logro en el escenario, trofeo en alto — símbolo de la nueva versión que puedes alcanzar"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="aspect-[4/5] h-auto w-full object-cover"
+          style="filter: contrast(1.15) saturate(1.05);"
+        />
+        <span class="absolute -bottom-4 -left-4 border-2 border-void bg-blood px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest text-paper">
+          Resultado real
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <Marquee
+    tone="acid"
+    items={['Bunker Xtreme', 'Sin excusas', 'Nueva versión', 'Giovifitness', 'Entrena crudo']}
+    class="relative z-10"
+  />
+</section>

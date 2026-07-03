@@ -1,0 +1,33 @@
+---
+import { waLink } from '../../utils/whatsapp';
+
+interface Props {
+  variant?: 'acid' | 'blood' | 'outline';
+  waMessage?: string;
+  href?: string;
+  class?: string;
+}
+
+const { variant = 'acid', waMessage, href, class: className = '' } = Astro.props;
+const link = href ?? (waMessage ? waLink(waMessage) : '#');
+
+const variants: Record<string, string> = {
+  acid: 'bg-acid text-acid-ink border-void v2-press',
+  blood: 'bg-blood text-paper border-void v2-press',
+  outline: 'bg-transparent text-paper border-paper hover:bg-paper hover:text-void v2-press v2-press--light',
+};
+---
+
+<a
+  href={link}
+  target={href ? undefined : '_blank'}
+  rel={href ? undefined : 'noopener noreferrer'}
+  class:list={[
+    'inline-flex items-center justify-center gap-2 border-[3px] px-7 py-3.5',
+    'font-display text-sm font-black uppercase tracking-tight',
+    variants[variant],
+    className,
+  ]}
+>
+  <slot />
+</a>
