@@ -1,1 +1,108 @@
 @import "tailwindcss";
+
+@theme {
+  /* BUNKERGYM — "Búnker" concreto + acero + amarillo señal */
+  --color-bone:       #EDE9E0;
+  --color-bone-soft:  #F5F2EC;
+  --color-ink:        #17161A;
+  --color-ink-800:    #26242A;
+  --color-concrete:   #8A857C;
+  --color-signal:     #F5C518;
+  --color-signal-ink: #161200;
+  --color-line:       #D8D3C8;
+
+  --font-display: "Archivo", "Inter", sans-serif;
+  --font-body:    "Inter", sans-serif;
+  --font-accent:  "Fraunces", serif;
+
+  --text-hero:    clamp(2.75rem, 8vw, 6.5rem);
+  --text-hero--line-height: 0.98;
+  --text-h2:      clamp(2rem, 5vw, 4rem);
+  --text-h2--line-height: 1.05;
+  --text-h3:      clamp(1.35rem, 2.5vw, 2rem);
+  --text-h3--line-height: 1.2;
+  --text-lead:    clamp(1.1rem, 1.6vw, 1.35rem);
+  --text-lead--line-height: 1.45;
+  --text-eyebrow: 0.8rem;
+  --text-eyebrow--letter-spacing: 0.22em;
+  --text-num:     clamp(3rem, 6vw, 5rem);
+
+  --shadow-bunker: 0 20px 60px -30px rgba(23, 22, 26, .35);
+  --text-ghost: clamp(5rem, 18vw, 15rem);
+}
+
+@layer base {
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    will-change: transform, opacity;
+  }
+
+  html.bunker-motion [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+
+  [data-reveal-img] {
+    overflow: hidden;
+  }
+
+  [data-reveal-img] img {
+    transform: scale(1);
+    transition: none;
+  }
+
+  html.bunker-motion [data-reveal-img] {
+    clip-path: inset(0 0 100% 0);
+  }
+
+  html.bunker-motion [data-reveal-img] img {
+    transform: scale(1.18);
+  }
+
+  .ghost-label {
+    position: absolute;
+    top: 0.25em;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: var(--text-ghost);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--color-signal), var(--color-bone));
+    z-index: 60;
+    transform-origin: left;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.bunker-motion [data-reveal] {
+      opacity: 1;
+      transform: none;
+    }
+
+    html.bunker-motion [data-reveal-img] {
+      clip-path: none;
+    }
+
+    html.bunker-motion [data-reveal-img] img {
+      transform: none;
+    }
+  }
+}

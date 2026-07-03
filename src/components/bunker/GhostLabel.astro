@@ -1,0 +1,13 @@
+---
+interface Props {
+  text: string;
+  tone?: 'light' | 'dark';
+}
+
+const { text, tone = 'light' } = Astro.props;
+const toneClass = tone === 'dark' ? 'text-bone/[0.04]' : 'text-ink/[0.04]';
+---
+
+<span class:list={['ghost-label', toneClass]} aria-hidden="true" data-parallax-ghost>
+  {text}
+</span>

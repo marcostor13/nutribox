@@ -1,0 +1,55 @@
+---
+import { Icon } from 'astro-icon/components';
+import SectionHeader from '../SectionHeader.astro';
+import Photo from '../Photo.astro';
+import GhostLabel from '../GhostLabel.astro';
+
+const goals = [
+  { icon: 'lucide:trending-down', label: 'Bajar de peso' },
+  { icon: 'lucide:dumbbell', label: 'Tonificar tu cuerpo' },
+  { icon: 'lucide:flame', label: 'Aumentar masa muscular' },
+  { icon: 'lucide:battery-charging', label: 'Recuperar tu energía' },
+  { icon: 'lucide:apple', label: 'Aprender a comer mejor' },
+  { icon: 'lucide:sparkles', label: 'Verte y sentirte espectacular' },
+];
+---
+
+<section id="transformacion" class="relative overflow-hidden bg-bone py-[clamp(5rem,12vh,9rem)]">
+  <GhostLabel text="TRANSFORMATION" />
+  <div class="relative mx-auto max-w-[1240px] px-5 sm:px-8">
+    <SectionHeader num="01" labelEn="TRANSFORMATION" subtitle="Tu transformación comienza aquí" />
+
+    <div class="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <p class="max-w-lg font-body text-lead text-ink/80" data-reveal>
+          No importa cuál sea tu meta. Tenemos un sistema diseñado para ayudarte.
+        </p>
+
+        <ul class="mt-10 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+          {goals.map((goal, i) => (
+            <li
+              class="flex items-center gap-4 border-b border-line pb-6"
+              data-reveal
+              data-reveal-index={i + 1}
+            >
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-ink text-signal">
+                <Icon name={goal.icon} class="h-5 w-5" />
+              </span>
+              <span class="font-display text-lg font-semibold uppercase tracking-tight text-ink">
+                {goal.label}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lg:col-span-5" data-reveal>
+        <Photo
+          src="/ilovepdf_images-extracted/img16.jpg"
+          alt="Entrenadora de BUNKERGYM evaluando el progreso físico de una clienta"
+          ratio="4/5"
+        />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import { Icon } from 'astro-icon/components';
+import SectionHeader from '../SectionHeader.astro';
+import GhostLabel from '../GhostLabel.astro';
+
+const pillars = [
+  { icon: 'lucide:activity', label: 'Movimiento' },
+  { icon: 'lucide:apple', label: 'Nutrición' },
+  { icon: 'lucide:zap', label: 'Energía' },
+  { icon: 'lucide:repeat', label: 'Hábitos' },
+  { icon: 'lucide:heart', label: 'Confianza' },
+  { icon: 'lucide:sparkles', label: 'Bienestar' },
+];
+---
+
+<section id="metodo" class="relative overflow-hidden bg-ink py-[clamp(5rem,12vh,9rem)] text-bone">
+  <GhostLabel text="METHOD" tone="dark" />
+  <div class="relative mx-auto max-w-[1240px] px-5 sm:px-8">
+    <SectionHeader num="06" labelEn="METHOD" subtitle="No trabajamos solo el cuerpo." theme="dark" />
+    <p class="mt-4 font-display text-h3 font-black uppercase tracking-tight" data-reveal>Método Integral</p>
+
+    <div class="mt-16 grid grid-cols-2 gap-x-6 gap-y-12 sm:grid-cols-3 lg:grid-cols-6">
+      {pillars.map((pillar, i) => (
+        <div class="flex flex-col items-center gap-4 text-center" data-reveal data-reveal-index={i + 1}>
+          <span class="flex h-16 w-16 items-center justify-center rounded-full border border-signal/40 text-signal">
+            <Icon name={pillar.icon} class="h-7 w-7" />
+          </span>
+          <span class="font-display text-sm font-semibold uppercase tracking-[0.1em]">{pillar.label}</span>
+        </div>
+      ))}
+    </div>
+
+    <p
+      class="mx-auto mt-24 max-w-2xl text-center font-accent text-[clamp(1.5rem,3.5vw,2.5rem)] italic leading-snug text-bone"
+      data-reveal
+    >
+      "Cuando una mujer se transforma por dentro, todo cambia por fuera."
+    </p>
+  </div>
+</section>

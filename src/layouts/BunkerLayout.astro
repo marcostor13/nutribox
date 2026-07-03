@@ -1,0 +1,190 @@
+---
+import '../styles/global.css';
+import SideNav from '../components/bunker/SideNav.astro';
+import FloatingCta from '../components/bunker/FloatingCta.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="BUNKERGYM by Giovifitness — entrenamiento, nutrición y bienestar para transformar tu cuerpo, tu energía y tu confianza."
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,700;0,800;0,900;1,700&family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz@1,9..144&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-bone text-ink font-body antialiased selection:bg-signal selection:text-signal-ink">
+    <div class="scroll-progress" data-scroll-progress></div>
+    <SideNav />
+    <slot />
+    <FloatingCta />
+
+    <script>
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!reduceMotion) {
+        document.documentElement.classList.add('bunker-motion');
+
+        // Reveal de bloques de contenido — fade + slide-up + escala sutil
+        const reveals = gsap.utils.toArray<HTMLElement>('[data-reveal]');
+        reveals.forEach((el) => {
+          const delay = (Number(el.dataset.revealIndex) || 0) * 0.09;
+
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.9,
+            ease: 'expo.out',
+            delay,
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          });
+        });
+
+        // Reveal de fotos — cortina ascendente + Ken Burns sutil
+        const imgReveals = gsap.utils.toArray<HTMLElement>('[data-reveal-img]');
+        imgReveals.forEach((el) => {
+          const inner = el.querySelector('img');
+          const tl = gsap.timeline({
+            scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+          });
+          tl.to(el, { clipPath: 'inset(0 0 0% 0)', duration: 1.1, ease: 'expo.out' });
+          if (inner) {
+            tl.to(inner, { scale: 1, duration: 1.6, ease: 'power2.out' }, 0);
+          }
+        });
+
+        // Tipografía fantasma — parallax de fondo, más lento que el scroll
+        const ghosts = gsap.utils.toArray<HTMLElement>('[data-parallax-ghost]');
+        ghosts.forEach((el) => {
+          gsap.to(el, {
+            yPercent: 18,
+            ease: 'none',
+            scrollTrigger: { trigger: el.parentElement ?? el, start: 'top bottom', end: 'bottom top', scrub: true },
+          });
+        });
+
+        // Hero parallax en capas + tilt sutil con el cursor
+        const hero = document.querySelector('[data-hero]');
+        if (hero) {
+          const figure = hero.querySelector<HTMLElement>('[data-hero-figure]');
+          const shadow = hero.querySelector<HTMLElement>('[data-hero-shadow]');
+
+          if (figure) {
+            gsap.to(figure, {
+              yPercent: -8,
+              ease: 'none',
+              scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true },
+            });
+
+            if (window.matchMedia('(pointer: fine)').matches) {
+              hero.addEventListener('mousemove', (e) => {
+                const rect = hero.getBoundingClientRect();
+                const px = (e.clientX - rect.left) / rect.width - 0.5;
+                const py = (e.clientY - rect.top) / rect.height - 0.5;
+                gsap.to(figure, { x: px * 16, rotateZ: px * 1.2, duration: 0.6, ease: 'power2.out' });
+              });
+              hero.addEventListener('mouseleave', () => {
+                gsap.to(figure, { x: 0, rotateZ: 0, duration: 0.8, ease: 'power3.out' });
+              });
+            }
+          }
+          if (shadow) {
+            gsap.to(shadow, {
+              yPercent: -12,
+              ease: 'none',
+              scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true },
+            });
+          }
+        }
+
+        // Botones magnéticos — se acercan levemente al cursor en hover
+        if (window.matchMedia('(pointer: fine)').matches) {
+          gsap.utils.toArray<HTMLElement>('.magnetic').forEach((btn) => {
+            btn.addEventListener('mousemove', (e) => {
+              const rect = btn.getBoundingClientRect();
+              const x = (e as MouseEvent).clientX - rect.left - rect.width / 2;
+              const y = (e as MouseEvent).clientY - rect.top - rect.height / 2;
+              gsap.to(btn, { x: x * 0.25, y: y * 0.35, duration: 0.4, ease: 'power2.out' });
+            });
+            btn.addEventListener('mouseleave', () => {
+              gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+            });
+          });
+        }
+
+        // Barra de progreso de scroll
+        const progress = document.querySelector<HTMLElement>('[data-scroll-progress]');
+        if (progress) {
+          gsap.to(progress, {
+            width: '100%',
+            ease: 'none',
+            scrollTrigger: { start: 0, end: () => document.body.scrollHeight - window.innerHeight, scrub: true },
+          });
+        }
+      }
+
+      // Count-up (Comunidad) — respeta reduced motion (valor final inmediato)
+      const counters = gsap.utils.toArray<HTMLElement>('[data-count-to]');
+      counters.forEach((el) => {
+        const target = Number(el.dataset.countTo || '0');
+        if (reduceMotion) {
+          el.textContent = target.toLocaleString('es-PE');
+          return;
+        }
+        const counter = { val: 0 };
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 85%',
+          once: true,
+          onEnter: () => {
+            gsap.to(counter, {
+              val: target,
+              duration: 1.6,
+              ease: 'power2.out',
+              onUpdate: () => {
+                el.textContent = Math.round(counter.val).toLocaleString('es-PE');
+              },
+            });
+          },
+        });
+      });
+
+      // Header: transparente sobre el hero, --bone al hacer scroll
+      const header = document.querySelector('[data-site-header]');
+      if (header) {
+        ScrollTrigger.create({
+          trigger: document.body,
+          start: 'top -80',
+          onEnter: () => header.classList.add('is-scrolled'),
+          onLeaveBack: () => header.classList.remove('is-scrolled'),
+        });
+      }
+    </script>
+  </body>
+</html>

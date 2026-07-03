@@ -1,0 +1,26 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  ratio?: string;
+  class?: string;
+  eager?: boolean;
+}
+
+const { src, alt, ratio = '3/4', class: className = '', eager = false } = Astro.props;
+---
+
+<div
+  data-reveal-img
+  style={`aspect-ratio: ${ratio};`}
+  class:list={['relative w-full overflow-hidden rounded-[4px] border border-line/60', className]}
+>
+  <img
+    src={src}
+    alt={alt}
+    loading={eager ? 'eager' : 'lazy'}
+    fetchpriority={eager ? 'high' : undefined}
+    decoding="async"
+    class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+  />
+</div>

@@ -1,0 +1,33 @@
+---
+// TODO: reemplazar por asset real del cliente (ver §12 del brief)
+interface Props {
+  alt: string;
+  asset: string;
+  ratio?: string;
+  tone?: 'bone' | 'ink';
+  class?: string;
+}
+
+const { alt, asset, ratio = '3/4', tone = 'bone', class: className = '' } = Astro.props;
+
+const toneClasses =
+  tone === 'ink'
+    ? 'bg-ink-800 text-bone/50 [background-image:repeating-linear-gradient(135deg,rgba(245,197,24,.06)_0,rgba(245,197,24,.06)_1px,transparent_1px,transparent_14px)]'
+    : 'bg-bone-soft text-concrete [background-image:repeating-linear-gradient(135deg,rgba(23,22,26,.05)_0,rgba(23,22,26,.05)_1px,transparent_1px,transparent_14px)]';
+---
+
+<div
+  role="img"
+  aria-label={alt}
+  data-reveal-img
+  style={`aspect-ratio: ${ratio};`}
+  class:list={[
+    'relative flex w-full items-end overflow-hidden rounded-[4px] border border-line/60',
+    toneClasses,
+    className,
+  ]}
+>
+  <span class="m-3 rounded-[4px] bg-ink/80 px-2.5 py-1 font-body text-[0.65rem] uppercase tracking-[0.1em] text-bone">
+    {asset}
+  </span>
+</div>

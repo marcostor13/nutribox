@@ -1,0 +1,217 @@
+---
+import { Icon } from 'astro-icon/components';
+import SectionHeader from '../SectionHeader.astro';
+import Placeholder from '../Placeholder.astro';
+import GhostLabel from '../GhostLabel.astro';
+
+// TODO: reemplazar por testimonios reales del cliente (fotos, nombres, cifras)
+const personas = [
+  {
+    asset: 'persona-01.jpg',
+    name: 'Andrea',
+    age: 29,
+    role: 'Alumna Bunker Xtreme',
+    quote: 'Recuperé la energía que sentía que había perdido para siempre.',
+    goal: 'Bajar de peso y recuperar energía diaria',
+    start: 'Sedentaria, sin rutina de ejercicio ni alimentación ordenada',
+    result: 'Cuerpo tonificado, hábitos sostenibles y más disciplina',
+    metric: '-8 kg · 12 semanas',
+  },
+  {
+    asset: 'persona-02.jpg',
+    name: 'Fiorella',
+    age: 34,
+    role: 'Alumna Bunker Xtreme',
+    quote: 'Por primera vez entiendo qué como y por qué me hace bien.',
+    goal: 'Tonificar el cuerpo tras el post-parto',
+    start: 'Sin tiempo, sin plan y con miedo a entrenar mal',
+    result: 'Rutina personalizada + plan nutricional que sí pudo mantener',
+    metric: '-6 kg · 10 semanas',
+  },
+  {
+    asset: 'persona-03.jpg',
+    name: 'Renzo',
+    age: 41,
+    role: 'Alumno 1 a 1',
+    quote: 'Mi entrenador ajusta todo semana a semana según cómo respondo.',
+    goal: 'Aumentar masa muscular sin lesionarse',
+    start: 'Lesión de rodilla previa y entrenamientos genéricos',
+    result: 'Fuerza y masa muscular en aumento sostenido, sin dolor',
+    metric: '+4 kg masa magra · 16 semanas',
+  },
+  {
+    asset: 'persona-04.jpg',
+    name: 'Camila',
+    age: 26,
+    role: 'Alumna Bunker Xtreme',
+    quote: 'La comunidad me sostuvo en los días en que quería rendirme.',
+    goal: 'Verse y sentirse espectacular para un evento importante',
+    start: 'Motivación intermitente, entrenaba sola',
+    result: 'Constancia real gracias al grupo y seguimiento cercano',
+    metric: '-5 kg · 8 semanas',
+  },
+];
+---
+
+<section id="historias" class="relative overflow-hidden bg-bone py-[clamp(5rem,12vh,9rem)]">
+  <GhostLabel text="STORIES" />
+  <div class="relative mx-auto max-w-[1240px] px-5 sm:px-8">
+    <SectionHeader num="07" labelEn="STORIES" subtitle="Historias de transformación" />
+
+    <div class="mt-12 flex flex-wrap gap-3" role="tablist" aria-label="Selecciona una historia" id="stories-tabs">
+      {personas.map((persona, i) => (
+        <button
+          type="button"
+          role="tab"
+          aria-selected={i === 0 ? 'true' : 'false'}
+          data-tab-index={i}
+          class="story-tab relative flex items-center gap-2 overflow-hidden rounded-full border border-line px-3 py-2 font-body text-xs font-semibold uppercase tracking-[0.08em] text-concrete transition-colors aria-selected:border-signal aria-selected:text-signal-ink"
+        >
+          <span class="story-tab-fill absolute inset-0 -z-10 origin-left scale-x-0 bg-signal"></span>
+          <span class="flex h-6 w-6 items-center justify-center rounded-full bg-ink-800 text-[0.6rem] text-bone">
+            {persona.name.charAt(0)}
+          </span>
+          {persona.name}
+        </button>
+      ))}
+    </div>
+
+    <div class="story-swiper swiper mt-8" data-reveal>
+      <div class="swiper-wrapper">
+        {personas.map((persona) => (
+          <div class="swiper-slide">
+            <article class="grid grid-cols-1 gap-10 rounded-[4px] border border-line bg-bone-soft p-6 sm:p-10 lg:grid-cols-12">
+              <div class="lg:col-span-4">
+                <Placeholder alt={`Foto de ${persona.name}, ${persona.role.toLowerCase()}`} asset={persona.asset} ratio="3/4" />
+              </div>
+              <div class="flex flex-col justify-center lg:col-span-8">
+                <p class="font-display text-lg font-semibold uppercase tracking-tight text-ink">
+                  {persona.name} · {persona.age} · {persona.role}
+                </p>
+                <p class="mt-4 font-accent text-xl italic text-ink/85">"{persona.quote}"</p>
+
+                <dl class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
+                  <div>
+                    <dt class="font-body text-xs font-semibold uppercase tracking-[0.14em] text-signal-ink/70">
+                      <span class="border-b-2 border-signal pb-1">Objetivo</span>
+                    </dt>
+                    <dd class="mt-2 font-body text-sm text-ink/75">{persona.goal}</dd>
+                  </div>
+                  <div>
+                    <dt class="font-body text-xs font-semibold uppercase tracking-[0.14em] text-signal-ink/70">
+                      <span class="border-b-2 border-signal pb-1">Punto de partida</span>
+                    </dt>
+                    <dd class="mt-2 font-body text-sm text-ink/75">{persona.start}</dd>
+                  </div>
+                  <div>
+                    <dt class="font-body text-xs font-semibold uppercase tracking-[0.14em] text-signal-ink/70">
+                      <span class="border-b-2 border-signal pb-1">Resultado</span>
+                    </dt>
+                    <dd class="mt-2 font-body text-sm text-ink/75">{persona.result}</dd>
+                  </div>
+                </dl>
+
+                <p class="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-4 py-2 font-display text-sm font-bold text-signal">
+                  <Icon name="lucide:trending-up" class="h-4 w-4" />
+                  {persona.metric}
+                </p>
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-8 flex items-center justify-center gap-4">
+      <button
+        type="button"
+        id="stories-prev"
+        aria-label="Historia anterior"
+        class="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:bg-ink hover:text-bone"
+      >
+        <Icon name="lucide:arrow-left" class="h-4 w-4" />
+      </button>
+      <button
+        type="button"
+        id="stories-next"
+        aria-label="Historia siguiente"
+        class="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:bg-ink hover:text-bone"
+      >
+        <Icon name="lucide:arrow-right" class="h-4 w-4" />
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .swiper-slide {
+    height: auto;
+  }
+
+  .story-tab-fill {
+    transition: transform 5.5s linear;
+  }
+
+  .story-tab-fill.is-filling {
+    transform: scaleX(1);
+  }
+</style>
+
+<script>
+  import Swiper from 'swiper';
+  import { A11y, EffectFade, Autoplay } from 'swiper/modules';
+  import 'swiper/css';
+  import 'swiper/css/effect-fade';
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const swiper = new Swiper('.story-swiper', {
+    modules: [A11y, EffectFade, Autoplay],
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
+    slidesPerView: 1,
+    speed: 700,
+    a11y: { enabled: true },
+    autoplay: reduceMotion
+      ? false
+      : { delay: 5500, disableOnInteraction: false, pauseOnMouseEnter: true },
+  });
+
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.story-tab');
+  const prevBtn = document.getElementById('stories-prev');
+  const nextBtn = document.getElementById('stories-next');
+
+  function setActiveTab(index: number) {
+    tabs.forEach((tab, i) => {
+      tab.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      const fill = tab.querySelector<HTMLElement>('.story-tab-fill');
+      if (!fill) return;
+      if (i === index) {
+        fill.style.transition = 'none';
+        fill.classList.remove('is-filling');
+        // forzar reflow para reiniciar la animación de progreso
+        void fill.offsetWidth;
+        fill.style.transition = '';
+        fill.classList.add('is-filling');
+      } else {
+        fill.style.transition = 'none';
+        fill.classList.remove('is-filling');
+        void fill.offsetWidth;
+        fill.style.transition = '';
+      }
+    });
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const index = Number(tab.dataset.tabIndex);
+      swiper.slideTo(index);
+    });
+  });
+
+  prevBtn?.addEventListener('click', () => swiper.slidePrev());
+  nextBtn?.addEventListener('click', () => swiper.slideNext());
+
+  swiper.on('slideChange', () => setActiveTab(swiper.activeIndex));
+  setActiveTab(0);
+</script>

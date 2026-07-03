@@ -1,0 +1,38 @@
+---
+import { Icon } from 'astro-icon/components';
+import { waLink } from '../../utils/whatsapp';
+---
+
+<a
+  id="bunker-floating-cta"
+  href={waLink('Hola, quiero agendar mi evaluación gratuita en BUNKERGYM.')}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="fixed bottom-6 right-6 z-30 flex translate-y-24 items-center gap-2 rounded-full bg-signal px-5 py-3.5 font-body text-sm font-semibold uppercase tracking-[0.06em] text-signal-ink opacity-0 shadow-bunker transition-all duration-500 hover:scale-105 hover:bg-ink hover:text-bone sm:right-8 sm:bottom-8"
+  aria-label="Agenda tu evaluación gratuita por WhatsApp"
+>
+  <Icon name="lucide:message-circle" class="h-4 w-4" />
+  <span class="hidden sm:inline">Agenda tu evaluación</span>
+  <span class="sm:hidden">Agenda ahora</span>
+</a>
+
+<script>
+  const cta = document.getElementById('bunker-floating-cta');
+  const hero = document.querySelector('[data-hero]');
+
+  if (cta && hero) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          cta.classList.add('translate-y-24', 'opacity-0');
+        } else {
+          cta.classList.remove('translate-y-24', 'opacity-0');
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(hero);
+  } else if (cta) {
+    cta.classList.remove('translate-y-24', 'opacity-0');
+  }
+</script>

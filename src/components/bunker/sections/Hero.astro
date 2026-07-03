@@ -1,0 +1,58 @@
+---
+import CtaButton from '../CtaButton.astro';
+import GhostLabel from '../GhostLabel.astro';
+---
+
+<section
+  id="hero"
+  data-hero
+  class="relative flex min-h-[100svh] items-center overflow-hidden bg-ink pt-28 pb-16 text-bone"
+>
+  <GhostLabel text="XTREME" tone="dark" />
+
+  <div class="relative mx-auto grid w-full max-w-[1240px] grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-6">
+    <div class="lg:col-span-7">
+      <p class="mb-6 font-body text-eyebrow font-semibold uppercase tracking-[0.22em] text-signal" data-reveal>
+        Bunker Xtreme · Giovifitness
+      </p>
+      <h1
+        class="font-display font-black uppercase leading-[0.98] text-hero"
+        data-reveal
+        data-reveal-index="1"
+      >
+        Bienvenida a<br />tu nueva versión
+      </h1>
+      <p class="mt-6 max-w-lg font-body text-lead text-bone/85" data-reveal data-reveal-index="2">
+        Transforma tu cuerpo, tu energía y tu confianza con entrenamiento, nutrición y bienestar en un solo lugar.
+      </p>
+      <p class="mt-4 max-w-md font-body text-sm text-bone/60" data-reveal data-reveal-index="3">
+        Deja de empezar de cero cada lunes. Aquí encontrarás las herramientas para sentirte fuerte, saludable y con
+        más confianza en ti.
+      </p>
+      <div class="mt-10 flex flex-col gap-4 sm:flex-row" data-reveal data-reveal-index="4">
+        <CtaButton variant="primary" waMessage="Hola, quiero empezar hoy mismo en BUNKERGYM.">
+          Empieza hoy
+        </CtaButton>
+        <CtaButton variant="outline" waMessage="Hola, quiero agendar mi evaluación gratuita en BUNKERGYM.">
+          Agenda una evaluación gratuita
+        </CtaButton>
+      </div>
+    </div>
+
+    <div class="relative lg:col-span-5">
+      <div data-hero-shadow class="absolute inset-x-4 inset-y-10 rounded-full bg-signal/25 blur-[90px]"></div>
+      <div data-hero-figure class="relative mx-auto max-w-[420px]" data-reveal data-reveal-index="2">
+        <img
+          src="/real/hero-trainer.jpg"
+          alt="Alumna de BUNKERGYM celebrando un logro en el escenario, trofeo en alto — símbolo de la nueva versión que puedes alcanzar"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="relative z-10 h-auto w-full object-contain drop-shadow-[0_40px_70px_rgba(0,0,0,0.55)]"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink to-transparent"></div>
+</section>

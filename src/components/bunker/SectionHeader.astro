@@ -1,0 +1,44 @@
+---
+interface Props {
+  num: string;
+  labelEn: string;
+  subtitle: string;
+  theme?: 'light' | 'dark';
+  align?: 'left' | 'center';
+}
+
+const { num, labelEn, subtitle, theme = 'light', align = 'left' } = Astro.props;
+const isDark = theme === 'dark';
+---
+
+<header
+  class:list={[
+    'flex flex-col gap-2 sm:gap-3',
+    align === 'center' ? 'items-center text-center' : 'items-start text-left',
+  ]}
+  data-reveal
+>
+  <div class:list={['flex items-baseline gap-3 sm:gap-4', align === 'center' && 'justify-center']}>
+    <span class="relative flex h-4 w-6 shrink-0 translate-y-2 items-center" aria-hidden="true">
+      <span class="absolute left-0 h-3.5 w-3.5 rounded-full bg-signal"></span>
+      <span class="absolute left-2 h-3.5 w-3.5 rounded-full bg-ink/80 mix-blend-multiply"></span>
+    </span>
+    <span class="font-display font-black text-num leading-none text-signal">{num}</span>
+    <span
+      class:list={[
+        'font-body font-semibold uppercase text-eyebrow tracking-[0.22em] underline decoration-signal/60 decoration-2 underline-offset-4',
+        isDark ? 'text-bone/70' : 'text-concrete',
+      ]}
+    >
+      {labelEn}
+    </span>
+  </div>
+  <p
+    class:list={[
+      'font-accent italic text-h3 max-w-xl',
+      isDark ? 'text-bone' : 'text-ink',
+    ]}
+  >
+    {subtitle}
+  </p>
+</header>

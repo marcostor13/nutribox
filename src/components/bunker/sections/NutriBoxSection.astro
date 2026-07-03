@@ -1,0 +1,54 @@
+---
+import { Icon } from 'astro-icon/components';
+import SectionHeader from '../SectionHeader.astro';
+import CtaButton from '../CtaButton.astro';
+import Photo from '../Photo.astro';
+import GhostLabel from '../GhostLabel.astro';
+
+const items = [
+  { icon: 'lucide:cookie', label: 'Snacks proteicos' },
+  { icon: 'lucide:wheat', label: 'Galletas saludables' },
+  { icon: 'lucide:nut', label: 'Frutos secos' },
+  { icon: 'lucide:battery', label: 'Barras energéticas' },
+  { icon: 'lucide:leaf', label: 'Productos funcionales' },
+];
+---
+
+<section id="nutribox" class="relative overflow-hidden bg-bone py-[clamp(5rem,12vh,9rem)]">
+  <GhostLabel text="NUTRIBOX" />
+  <div class="relative mx-auto max-w-[1240px] px-5 sm:px-8">
+    <SectionHeader num="03" labelEn="NUTRIBOX" subtitle="Disfruta comer sin culpa." />
+
+    <div class="mt-14 grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-6" data-reveal>
+        <Photo
+          src="/real/nutribox-delivery.jpg"
+          alt="Clienta recibiendo su caja NutriBox en la puerta de su casa"
+          ratio="4/5"
+        />
+      </div>
+
+      <div class="lg:col-span-6" data-reveal>
+        <h3 class="font-display text-h3 font-black uppercase tracking-tight text-ink">NutriBox</h3>
+        <p class="mt-4 max-w-md font-body text-lead text-ink/80">
+          Una selección de snacks saludables elegidos para mantener tus objetivos sin sacrificar el sabor.
+        </p>
+
+        <ul class="mt-8 flex flex-col gap-3">
+          {items.map((item) => (
+            <li class="flex items-center gap-3 border-b border-line pb-3 font-body text-ink/85">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-signal/15 text-signal-ink">
+                <Icon name={item.icon} class="h-4 w-4" />
+              </span>
+              {item.label}
+            </li>
+          ))}
+        </ul>
+
+        <CtaButton variant="outline-dark" waMessage="Hola, quiero mi NutriBox" class="mt-9">
+          Quiero mi NutriBox
+        </CtaButton>
+      </div>
+    </div>
+  </div>
+</section>
