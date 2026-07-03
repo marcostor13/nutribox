@@ -22,7 +22,7 @@ const mosaic = [
 <section id="comunidad" class="relative overflow-hidden bg-ink py-[clamp(5rem,12vh,9rem)] text-bone">
   <GhostLabel text="COMMUNITY" tone="dark" />
   <div class="relative mx-auto max-w-[1240px] px-5 sm:px-8">
-    <SectionHeader num="08" labelEn="COMMUNITY" subtitle="Comunidad Bunker Xtreme" theme="dark" />
+    <SectionHeader num="08" labelEn="COMMUNITY" subtitle="Comunidad GioviFitness" theme="dark" />
     <p class="mt-6 max-w-xl font-body text-lead text-bone/80" data-reveal>
       Más que un programa. Una tribu que se apoya, crece y evoluciona junta.
     </p>
@@ -35,9 +35,9 @@ const mosaic = [
           data-reveal-index={i + 1}
         >
           {item.src ? (
-            <Photo src={item.src} alt="Comunidad BUNKERGYM entrenando junta" ratio={i === 0 ? '1/1' : '3/4'} />
+            <Photo src={item.src} alt="Comunidad GioviFitness entrenando en equipo" ratio={i === 0 ? '1/1' : '3/4'} />
           ) : (
-            <Placeholder alt="Foto de comunidad BUNKERGYM entrenando junta" asset={item.asset} tone="ink" ratio={i === 0 ? '1/1' : '3/4'} />
+            <Placeholder alt="Foto de la comunidad GioviFitness entrenando en equipo" asset={item.asset} tone="ink" ratio={i === 0 ? '1/1' : '3/4'} />
           )}
         </div>
       ))}

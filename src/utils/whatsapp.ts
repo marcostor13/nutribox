@@ -1,4 +1,4 @@
-// TODO cliente: reemplazar por el número real de WhatsApp de BUNKERGYM
+// TODO cliente: reemplazar por el número real de WhatsApp de GioviFitness
 export const WA_NUMBER = '51999999999';
 
 export function waLink(message: string): string {

@@ -8,12 +8,12 @@ import GhostLabel from '../GhostLabel.astro';
   data-hero
   class="relative flex min-h-[100svh] items-center overflow-hidden bg-ink pt-28 pb-16 text-bone"
 >
-  <GhostLabel text="XTREME" tone="dark" />
+  <GhostLabel text="GIOVIFITNESS" tone="dark" />
 
   <div class="relative mx-auto grid w-full max-w-[1240px] grid-cols-1 items-center gap-12 px-5 sm:px-8 lg:grid-cols-12 lg:gap-6">
     <div class="lg:col-span-7">
       <p class="mb-6 font-body text-eyebrow font-semibold uppercase tracking-[0.22em] text-signal" data-reveal>
-        Bunker Xtreme · Giovifitness
+        GioviFitness
       </p>
       <h1
         class="font-display font-black uppercase leading-[0.98] text-hero"
@@ -30,25 +30,31 @@ import GhostLabel from '../GhostLabel.astro';
         más confianza en ti.
       </p>
       <div class="mt-10 flex flex-col gap-4 sm:flex-row" data-reveal data-reveal-index="4">
-        <CtaButton variant="primary" waMessage="Hola, quiero empezar hoy mismo en BUNKERGYM.">
+        <CtaButton variant="primary" waMessage="Hola, quiero empezar hoy mismo en GioviFitness.">
           Empieza hoy
         </CtaButton>
-        <CtaButton variant="outline" waMessage="Hola, quiero agendar mi evaluación gratuita en BUNKERGYM.">
+        <CtaButton variant="outline" waMessage="Hola, quiero agendar mi evaluación gratuita en GioviFitness.">
           Agenda una evaluación gratuita
         </CtaButton>
       </div>
     </div>
 
     <div class="relative lg:col-span-5">
-      <div data-hero-shadow class="absolute inset-x-4 inset-y-10 rounded-full bg-signal/25 blur-[90px]"></div>
-      <div data-hero-figure class="relative mx-auto max-w-[420px]" data-reveal data-reveal-index="2">
+      <div
+        aria-hidden="true"
+        class="absolute right-[4%] top-[6%] h-[80%] w-[82%] bg-signal"
+        style="clip-path: polygon(16% 0, 100% 8%, 86% 100%, 0% 90%);"
+      >
+      </div>
+      <div data-hero-shadow class="absolute inset-x-4 inset-y-10 rounded-full bg-signal/20 blur-[100px]"></div>
+      <div data-hero-figure class="relative mx-auto max-w-[460px]" data-reveal data-reveal-index="2">
         <img
-          src="/real/hero-trainer.jpg"
-          alt="Alumna de BUNKERGYM celebrando un logro en el escenario, trofeo en alto — símbolo de la nueva versión que puedes alcanzar"
+          src="/real/hero-model.png"
+          alt="Persona entrenando con GioviFitness, lista para transformar su cuerpo y su energía"
           loading="eager"
           fetchpriority="high"
           decoding="async"
-          class="relative z-10 h-auto w-full object-contain drop-shadow-[0_40px_70px_rgba(0,0,0,0.55)]"
+          class="relative z-10 h-auto w-full object-contain drop-shadow-[0_40px_70px_rgba(0,0,0,0.6)]"
         />
       </div>
     </div>

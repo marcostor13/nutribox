@@ -47,8 +47,8 @@ const items = ['Leggings', 'Tops deportivos', 'Casacas', 'Polos oversize', 'Conj
 
     <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
       <p class="max-w-md font-body text-lead text-ink/80 lg:col-span-6" data-reveal>
-        Moda deportiva que combina estilo, comodidad y rendimiento. Colecciones para sentirte segura dentro y fuera
-        del gimnasio.
+        Moda deportiva que combina estilo, comodidad y rendimiento. Colecciones para sentirte con confianza dentro y
+        fuera del gimnasio.
       </p>
       <ul class="flex flex-wrap gap-x-6 gap-y-2 font-body text-sm text-concrete lg:col-span-6 lg:justify-end" data-reveal>
         {items.map((item) => (
@@ -60,7 +60,7 @@ const items = ['Leggings', 'Tops deportivos', 'Casacas', 'Polos oversize', 'Conj
     <div class="mt-12 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-12">
       {gallery.map((g, i) => (
         <div class:list={['col-span-1', g.span]} data-reveal data-reveal-index={i + 1}>
-          <Photo src={g.src} alt={`${g.label} — colección Outfit Fitness BUNKERGYM`} ratio={g.ratio} />
+          <Photo src={g.src} alt={`${g.label} — colección Outfit Fitness GioviFitness`} ratio={g.ratio} />
         </div>
       ))}
     </div>
