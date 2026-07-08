@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import CtaButtonV2 from './CtaButtonV2.astro';
+import { waLink } from '../../utils/whatsapp';
 
 const links = [
   { href: '#hero', label: 'Inicio', num: '00' },
@@ -83,7 +84,7 @@ const links = [
       <a href="#" class="v2-press v2-press--light flex h-9 w-9 items-center justify-center border-2 border-paper bg-void hover:text-acid" aria-label="Instagram">
         <Icon name="lucide:instagram" class="h-4 w-4" />
       </a>
-      <a href="#" class="v2-press v2-press--light flex h-9 w-9 items-center justify-center border-2 border-paper bg-void hover:text-acid" aria-label="WhatsApp">
+      <a href={waLink('Hola, tengo una consulta para BUNKERGYM.')} target="_blank" rel="noopener noreferrer" class="v2-press v2-press--light flex h-9 w-9 items-center justify-center border-2 border-paper bg-void hover:text-acid" aria-label="WhatsApp">
         <Icon name="lucide:message-circle" class="h-4 w-4" />
       </a>
     </div>
